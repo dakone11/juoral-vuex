@@ -2,7 +2,7 @@ export default {
   name: "daybook",
   component: () =>
     import(
-      /* webpackChunkName: "about" */ "@/modules/daybook/layouts/DaybookLayout.vue"
+      /* webpackChunkName: "daybook" */ "@/modules/daybook/layouts/DayBookLayout.vue"
     ),
   children: [
     {
@@ -10,7 +10,7 @@ export default {
       name: "no-entry",
       component: () =>
         import(
-          /* webpackChunkName: "about" */ "@/modules/daybook/views/NoEntrySelected"
+          /* webpackChunkName: "daybook-no-entry" */ "@/modules/daybook/views/NoEntrySelected.vue"
         ),
     },
     {
@@ -18,8 +18,13 @@ export default {
       name: "entry",
       component: () =>
         import(
-          /* webpackChunkName: "about" */ "@/modules/daybook/views/EntryView.vue"
+          /* webpackChunkName: "daybook-no-entry" */ "@/modules/daybook/views/EntryView.vue"
         ),
+      props: (route) => {
+        return {
+          id: route.params.id,
+        };
+      },
     },
   ],
 };
